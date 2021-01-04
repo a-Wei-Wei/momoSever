@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
+#可以用这个方法，就是用免费66代理网站爬下来的 代理ip
 def getIps():
     url = "http://www.66ip.cn/mo.php?sxb=&tqsl=100&port=&export=&ktip=&sxa=&submit=%CC%E1++%C8%A1&textarea="
     response = requests.get(url)
@@ -11,6 +12,7 @@ def getIps():
     iplist = re.findall(p,msg)
     return iplist
 
+# 这个函数就是 使用本地芝麻代理
 def getIpsFromTxt():
     file = open("./ips.txt")
     msg = file.readlines()
