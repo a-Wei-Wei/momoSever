@@ -1,6 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import configparser
+
+config_parse = configparser.ConfigParser()
+config_parse.read("./momoUrl")
 
 #可以用这个方法，就是用免费66代理网站爬下来的 代理ip
 def getIps():
@@ -26,11 +30,8 @@ def getIpsFromTxt():
 def main():
     # ipList = getIps()
     ipList = getIpsFromTxt()
-    url = "https://www.maimemo.com/share/page?uid=13225050&pid=b4823f8989f0f4b6ae5c94f42584fbab&tid=98e17a9c378dbe0c29c3c17d565b5a6a"
+    url = config_parse.get("section one", "url")
     for ip_temp in ipList:
-        # ip = ip_temp[0]
-        # port = ip_temp[1]
-        # https_proxy = "{0}:{1}".format(ip, port)
         https_proxy = ip_temp
         proxies={
             'https': https_proxy
